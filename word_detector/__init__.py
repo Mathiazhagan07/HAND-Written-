@@ -1,6 +1,7 @@
 from collections import defaultdict
 from dataclasses import dataclass
 from typing import List
+import math
 
 import cv2
 import numpy as np
@@ -81,8 +82,8 @@ def _compute_kernel(kernel_size: int,
 
     # compute terms and combine them
     exp_term = np.exp(-x ** 2 / (2 * sigma_x) - y ** 2 / (2 * sigma_y))
-    x_term = (x ** 2 - sigma_x ** 2) / (2 * np.math.pi * sigma_x ** 5 * sigma_y)
-    y_term = (y ** 2 - sigma_y ** 2) / (2 * np.math.pi * sigma_y ** 5 * sigma_x)
+    x_term = (x ** 2 - sigma_x ** 2) / (2 * math.pi * sigma_x ** 5 * sigma_y)
+    y_term = (y ** 2 - sigma_y ** 2) / (2 * math.pi * sigma_y ** 5 * sigma_x)
     kernel = (x_term + y_term) * exp_term
 
     # normalize and return kernel
